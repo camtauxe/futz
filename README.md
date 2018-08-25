@@ -37,3 +37,15 @@ Futz is built with Maven, so you will need to download and install it before you
 mvn install
 ```
 3. This will add Futz to the your Maven installation's local repository. To use it, create another Maven project somewhere and simply add Futz as a dependency.
+
+### How to use Futz
+
+For a blank template project, go [HERE](https://github.com/camtauxe/futz-blank-project).
+
+A Futz game can be started with a call to the **FUTZ.init** function. The function takes a number of arguments that can all be left out (given default values) if you desire. **BUT** you *must* override either **startCallback** or **initialScene** in order to be able to do anything with Futz.
+
+Overriding **startCallback** is the recommending route for beginners (this is what's done in the template project). It simply allows you to specify a function to be called once Futz has started. In this function, you can begin to initialize and spawn entities, load assets, change the scene, etc, all in the context of a default scene created by Futz.
+
+You can also instead override **initialScene** and provide your own Futz scene (not to be confused with a JavaFX Scene) which Futz will use as the first scene after the splash screen. This will allow you a little more control over what happens in the scene than just using the default scene. See the documentation for Scenes in the source code [HERE](src/main/kotlin/Scene.kt)
+  
+For more details see the documentation for **FUTZ.init** in the source code [HERE](src/main/kotlin/Core.kt)
