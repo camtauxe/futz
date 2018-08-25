@@ -1,5 +1,4 @@
-# FUTZ Game Engine
-
+# FUTZ Game Library
 ## Version: 0.1 ALPHA
 
 ### What is Futz?
