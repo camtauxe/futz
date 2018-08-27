@@ -58,7 +58,10 @@ public object FUTZ {
     internal lateinit var canvas:   Canvas
     internal lateinit var fxScene:  javafx.scene.Scene
     internal lateinit var stage:    Stage
-    internal val graphicsContext:   GraphicsContext get() = canvas.graphicsContext2D //Shortcut
+    /**
+     * The JavaFX graphics context used for rendering
+     */
+    public val graphicsContext:   GraphicsContext get() = canvas.graphicsContext2D //Shortcut
 
     /** 
      * This function will be called after the Splash Screen finishes.
