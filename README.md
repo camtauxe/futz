@@ -1,6 +1,8 @@
 # FUTZ Game Library
 ## Version: 0.1 ALPHA
 
+## Full Documentation: [Click Here](http://futz.camerontauxe.com/doc/futz/index.html)
+
 ### What is Futz?
 
 Futz is a Java/Kotlin game-making library designed to make it easy for absolute beginners to create simple, 2D games. The idea came about when I was trying to teach some of my non-programmer friends the basics. I figured they would have more fun learning if they could work on a real project instead of just endless exercises. And so I began creating Futz with the goal of getting some of the more confusing house-keeping involved in making a game out of the way and allowing my friends to jump right in to making a game and learning basic programming concepts (object-oriented design, functions, variables, loops, etc) in a fun environment.
@@ -49,4 +51,4 @@ Overriding **startCallback** is the recommending route for beginners (this is wh
 
 You can also instead override **initialScene** and provide your own Futz scene (not to be confused with a JavaFX Scene) which Futz will use as the first scene after the splash screen. This will allow you a little more control over what happens in the scene than just using the default scene. See the documentation for Scenes in the source code [HERE](src/main/kotlin/Scene.kt)
   
-For more details see the documentation for **FUTZ.init** in the source code [HERE](src/main/kotlin/Core.kt)
+For more details see the full documentation [HERE](http://futz.camerontauxe.com/doc/futz/index.html)
