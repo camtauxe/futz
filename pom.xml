@@ -92,6 +92,9 @@
 							<!--<platforms>JVM</platforms>-->
 						</root>
 					</sourceRoots>
+					<includes>
+						<file>${project.basedir}/documentation.md</file>
+					</includes>
 				</configuration>
 			</plugin>
 

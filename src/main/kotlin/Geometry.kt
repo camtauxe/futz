@@ -6,6 +6,8 @@ import javafx.scene.canvas.GraphicsContext
  * Represents a Two-dimensional vector with x and y coordinates, such as a position or speed.
  * Normally immutable, however there is the [MutableVector2] subclass which will allow its
  * values to be changed.
+ * @property x The x-coordinate of the vector
+ * @property y The y-coordinate of the vector
  * @see MutableVector2
  */
 public open class Vector2(open val x: Double, open val y: Double) {
@@ -14,12 +16,14 @@ public open class Vector2(open val x: Double, open val y: Double) {
     /** Get a copy of this Vector2 that is mutable */
     public fun mutableCopy():  MutableVector2  = MutableVector2(x,y)
 
-    /** Component operator functions (for destructuring) */
+    /** Component operator function (for destructuring): Returns [x] */
     public operator fun component1(): Double = x
+    /** Component operator function (for destructuring): Returns [y] */
     public operator fun component2(): Double = y
 
-    /** Addition and subtraction operators */
+    /** Addition operator: Result = Vector2(x = a.x + b.x, y = a.y + b.y) */
     public open operator fun plus(other: Vector2) = Vector2(this.x + other.x, this.y + other.y)
+    /** Subtraction operator: Result = Vector2(x = a.x - b.x, y = a.y - b.y) */
     public open operator fun minus(other: Vector2) = Vector2(this.x - other.x, this.y - other.y)
 
     // @TODO: Multiplication and division operators (with other vectors and with scalars)
@@ -48,6 +52,10 @@ public class MutableVector2(x: Double, y: Double) : Vector2(x,y) {
  * Represents a rectangular area in space. The [x] and [y] properties represent the position of
  * the upper-left-hand corner of the rectangle. Normally immutable, however there is the
  * [MutableRect] subclass which will allow its values to be changed.
+ * @property x The x-coordinate of the upper-left-hand corner of the the rectangle
+ * @property y The y-coordinate of the upper-left-hand corner of the the rectnangle
+ * @property width The width of the rectangle
+ * @property height The height of the rectangle
  * @see MutableRect
  */
 open class Rect(

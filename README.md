@@ -14,6 +14,7 @@ Right now, Futz is extremely un-finished. It's rough around the edges in many pl
 * Start JavaFX and get a game running with just a single function call to **FUTZ.init**
 * Entity Management (spawn, destroy, update, render, etc.)
 * Input Management
+* Box collision detection
 * Built-in basic entities for drawing sprites, rectangles, or text
 * Lots of small, helpful abstractions (nothing ground-breaking, but it'll save you some time in a game jam)
 
