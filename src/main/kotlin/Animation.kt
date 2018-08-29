@@ -9,13 +9,13 @@ public class SpriteSheet(
 ) {
     val numSprites: Int = rows * columns;
 
-    val spriteWidth:        Double = sprite.width  / columns.toDouble()
-    val spriteHeight:       Double = sprite.height / rows.toDouble()
-    val spriteWidthPixels:  Double = sprite.image.width  / columns.toDouble()
-    val spriteHeightPixels: Double = sprite.image.height / rows.toDouble()
+    val spriteWidthPixels:  Double = sprite.image.width   / columns.toDouble()
+    val spriteHeightPixels: Double = sprite.image.height  / rows.toDouble()
+    val spriteWidth:        Double = sprite.pixelsPerUnit / spriteWidthPixels
+    val spriteHeight:       Double = sprite.pixelsPerUnit / spriteHeightPixels
 
     fun getClip(index: Int): Rect =
-        getClip(columnIndex = index % rows, rowIndex = index / rows)
+        getClip(columnIndex = index % columns, rowIndex = index / columns)
 
     fun getClip(columnIndex: Int, rowIndex: Int): Rect =
         Rect(
@@ -51,7 +51,7 @@ public class AnimationPlayer (
         private set
     var frameTime:      Double = 0.0
         private set
-    var atEnd:         Boolean = false
+    var atEnd:          Boolean = false
         private set
 
     public fun update() {

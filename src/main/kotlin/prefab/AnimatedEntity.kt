@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext
 
 open class AnimatedEntity(initialAnimation: Animation) : Entity() {
 
-    val animationPlayer: AnimationPlayer = AnimationPlayer(initialAnimation)
+    public val animationPlayer: AnimationPlayer = AnimationPlayer(initialAnimation)
 
     override var name:          String = "Animated Entity"
     override val collidable:    Boolean = true

@@ -222,6 +222,8 @@ public fun GraphicsContext.drawSpriteWithClip(sprite: Sprite, position: Vector2,
     this.drawImage(
         sprite.image,
         clip.x, clip.y, clip.width, clip.height,
-        position.x, position.y, sprite.width, sprite.height
+        position.x, position.y,
+        clip.width / sprite.pixelsPerUnit,
+        clip.height / sprite.pixelsPerUnit
     )
 }
