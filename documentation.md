@@ -1,7 +1,7 @@
 # Module Futz
 
 ## FUTZ Game Library
-## Current Version: 0.1 Alpha
+## Current Version: 0.2 Alpha
 
 Futz is a library for the creation of simple, 2D games in Kotlin using JavaFX. A Futz game works using [entities][com.camerontauxe.futz.Entity], which represent game objects existing, moving and interacting within the game-world. Every frame (roughly 60 times per second), all of the entities in the world have a chance to update and afterwards the game-world is rendered onto a JavaFX canvas. Currently, Futz provides utilities for dealing with the JavaFX backend to get a game up-and-running, managing entities (spawning, updating, destroying, colliding, rendering), handling input, debugging and loading text and image assets. But more functionality is on the way.
 

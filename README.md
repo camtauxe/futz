@@ -1,5 +1,5 @@
 # FUTZ Game Library
-## Version: 0.1 ALPHA
+## Version: 0.2 ALPHA
 
 ## Full Documentation: [Click Here](http://futz.camerontauxe.com/doc/futz/index.html)
 
@@ -25,7 +25,6 @@ Right now, Futz is extremely un-finished. It's rough around the edges in many pl
 I plan to keep adding functionality to Futz as I encounter the need for features. Though it is important to me to maintain the bottom-line that Futz be easy for beginners to work with, so any features I add should be very simple to use, or possible to completely ignore in the case of more advanced functionality. That said, there are a number of features that are immediately on the drawing board:
 
 * Sound
-* Animation with sprite sheets
 * Scaling and rotating of entities
 * Entity heirarchies (i.e. entities can be the child or parent of another entity)
 
