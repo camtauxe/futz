@@ -8,22 +8,6 @@ public class SpriteSheet(
     val columns: Int
 ) {
     val numSprites: Int = rows * columns;
-
-    val spriteWidthPixels:  Double = sprite.image.width   / columns.toDouble()
-    val spriteHeightPixels: Double = sprite.image.height  / rows.toDouble()
-    val spriteWidth:        Double = sprite.pixelsPerUnit / spriteWidthPixels
-    val spriteHeight:       Double = sprite.pixelsPerUnit / spriteHeightPixels
-
-    fun getClip(index: Int): Rect =
-        getClip(columnIndex = index % columns, rowIndex = index / columns)
-
-    fun getClip(columnIndex: Int, rowIndex: Int): Rect =
-        Rect(
-            x = columnIndex * spriteWidthPixels,
-            y = rowIndex * spriteHeightPixels,
-            width = spriteWidthPixels,
-            height = spriteHeightPixels
-        )
 }
 
 public class Animation(
@@ -89,20 +73,29 @@ public class AnimationPlayer (
         frameTime = 0.0
         atEnd = false
     }
-
-    public fun getSpriteSheetClip(): Rect =
-        currentAnimation.spriteSheet.getClip(
-            currentAnimation.startIndex + currentFrame
-        )
-
 }
 
 public fun GraphicsContext.drawAnimation(player: AnimationPlayer, position: Vector2) {
-    this.drawSpriteWithClip(
-        player.currentAnimation.spriteSheet.sprite,
-        position,
-        player.currentAnimation.spriteSheet.getClip(
-            player.currentAnimation.startIndex + player.currentFrame
+    val spriteSheet = player.currentAnimation.spriteSheet
+    val sprite = spriteSheet.sprite
+
+    if (!sprite.loaded) sprite.load()
+
+    sprite.image?.let{
+        val widthPixels  = it.width  / spriteSheet.columns.toDouble()
+        val heightPixels = it.height / spriteSheet.rows.toDouble()
+        val frameIndex = player.currentAnimation.startIndex + player.currentFrame
+        val clip = Rect(
+            x = (frameIndex % spriteSheet.columns) * widthPixels,
+            y = (frameIndex / spriteSheet.columns) * heightPixels,
+            width  = widthPixels,
+            height = heightPixels
         )
-    )
+        
+        drawImage(
+            it,
+            clip.x, clip.y, clip.width, clip.height,
+            position.x, position.y, sprite.width, sprite.height
+        )
+    }
 }

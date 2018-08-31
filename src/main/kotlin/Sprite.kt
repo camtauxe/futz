@@ -10,75 +10,30 @@ private const val SPRITE_RESOURCE_PATH  = "assets/img/"
 // loading a sprite
 private const val ERROR_SPRITE_PATH     = "FUTZ/spriteError.png"
 
-/**
- * Represents an image to display in the game.
- *
- * A sprite simply ties an instance of a JavaFX Image to
- * a value describing how the size of the image (in pixels)
- * relates to the size in the game world (units)
- *
- * Note that the constructor is not publicly visible. The
- * user should instead use the [Assets.loadSprite] factory method
- * to create instances of sprites.
- *
- * @see [Assets.loadSprite]
- *
- * @constructor Creates a new Sprite with the given image
- * and pixels-per-unit ratio
- *
- * @property [image] The JavaFX image this sprite uses
- * @property [pixelsPerUnit] A ratio describing how many pixels
- * in the image correspond to one in-game unit.
- */
-public class Sprite internal constructor(
-    val image: Image,
-    val pixelsPerUnit: Double
+public class Sprite (
+    val path: String,
+    val width: Double,
+    val height: Double,
+    val loadFromExternalFile: Boolean = false
 ) {
-    /** The width of the sprite in game-units. (Read-only) */
-    val width:  Double = image.width  / pixelsPerUnit
-    /** The height of the sprite in game-units. (Read-only) */
-    val height: Double = image.height / pixelsPerUnit
-}
+    public val url =
+        if (loadFromExternalFile)   "file:" + path
+        else                        SPRITE_RESOURCE_PATH + path
 
-/**
-* Load and return a new sprite asset from the specified file and
-* with the specified size
-*
-* If an error occurs (for example, if the file is not found) then the returned sprite
-* is a placeholder image.
-*
-* Note that this cannot be called before FUTZ has been initialized. To prevent slow-down
-* while playing the game, the best time to load sprites is in a custom loading callback
-* function which can be specified when calling [FUTZ.init]
-*
-* @throws IllegalStateException If called before FUTZ has been initialized.
-*
-* @see [Sprite]
-* @see [FUTZ.init]
-*
-* @param [path] Path to the file to load from. If [fromExternalFile] is 'false',
-* this will relative to the "assets/img/" directory within the JAR file. If
-* [fromExternalFile] is 'true' then this is path to any file relative to the working
-* directory of the application.
-* @param [pixelsPerUnit] The pixels-to-game-units ratio of the sprite.
-* @receiver Assets
-*/
-public fun Assets.loadSprite(
-    path: String,
-    pixelsPerUnit: Double = 100.0,
-    fromExternalFile: Boolean = false
-): Sprite {
-    if (!FUTZ.isRunning)
-        throw IllegalStateException("Sprites cannot be loaded before FUTZ is initialized!")
+    public var image: Image? = null
+        private set 
+    public var loaded: Boolean = false
+        private set
 
-    val url: String =
-        if (fromExternalFile)   "file:" + path
-        else                    SPRITE_RESOURCE_PATH + path
+    public fun load() {
+        if (!FUTZ.isRunning)
+            throw IllegalStateException("Sprites cannot be loaded before FUTZ is initialized!")
+        if (loaded) return
 
-    val img     = loadImage(url)
-    val sprite  = Sprite(img, pixelsPerUnit)
-    spritesMutable.add(sprite)
-    return sprite
+        image = loadImage(url)
+
+        loaded = true
+    }
 }
 
 /**
@@ -104,7 +59,12 @@ private fun getErrorImage(): Image = Image(SPRITE_RESOURCE_PATH+ERROR_SPRITE_PAT
  * @receiver GraphicsContext
  */
 public fun GraphicsContext.drawSprite(sprite: Sprite, x: Double, y: Double) {
-    this.drawImage(sprite.image, x, y, sprite.width, sprite.height)
+    if (!sprite.loaded) sprite.load()
+
+    sprite.image?.let{
+        this.drawImage(
+            sprite.image, x, y, sprite.width, sprite.height)
+    }
 }
 
 /**
@@ -114,15 +74,19 @@ public fun GraphicsContext.drawSprite(sprite: Sprite, x: Double, y: Double) {
  * @reciever GraphicsContext
  */
 public fun GraphicsContext.drawSprite(sprite: Sprite, position: Vector2) {
-    this.drawImage(sprite.image, position.x, position.y, sprite.width, sprite.height)
+    this.drawSprite(sprite, position.x, position.y)
 }
 
 public fun GraphicsContext.drawSpriteWithClip(sprite: Sprite, position: Vector2, clip: Rect) {
-    this.drawImage(
-        sprite.image,
-        clip.x, clip.y, clip.width, clip.height,
-        position.x, position.y,
-        clip.width / sprite.pixelsPerUnit,
-        clip.height / sprite.pixelsPerUnit
-    )
+    if (!sprite.loaded) sprite.load()
+
+    sprite.image?.let{
+        this.drawImage(
+            it,
+            clip.x, clip.y, clip.width, clip.height,
+            position.x, position.y,
+            sprite.width,
+            sprite.height
+        )
+    }
 }

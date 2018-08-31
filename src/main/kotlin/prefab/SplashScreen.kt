@@ -33,21 +33,13 @@ internal object SplashScreen : Scene() {
     internal var loadDone:       Boolean = false
 
     /** Sprite with the "Powered By FUTZ" logo */
-    private lateinit var logoSprite:    Sprite
-    private var spriteLoaded:           Boolean = false
+    private val logoSprite:     Sprite  = Sprite("FUTZ/poweredBy.png", 2.5, 2.5)
 
     private var loadingFont = Font("Liberation Sans", 0.35)
 
     /** Construct scene (load assets if necessary, spawn logo sprite and loading text) */
     override fun construct() {
-        if (!spriteLoaded) {
-            logoSprite      = Assets.loadSprite(path = "FUTZ/poweredBy.png", pixelsPerUnit = 175.0)
-            spriteLoaded    = true
-        }
-        if (!Assets.liberationFontsLoaded) {
-            Assets.loadLiberationFonts()
-            loadingFont = Font("Liberation Sans", 0.35)
-        }
+        if (!logoSprite.loaded) logoSprite.load()
 
         val logo = SpriteEntity(logoSprite)
         logo.centerInside(Viewport.worldRect)

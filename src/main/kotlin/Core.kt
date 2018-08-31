@@ -170,6 +170,9 @@ public object FUTZ {
         // is constant from this point on
         Viewport.initInWindow(windowWidth = width, windowHeight = height)
 
+        // Load liberation fonts
+        Fonts.loadLiberationFonts()
+
         // Start a JavaFX application
         Application.launch(FutzApp::class.java)
     }
