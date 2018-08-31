@@ -13,8 +13,8 @@ open class AnimatedEntity(initialAnimation: Animation) : Entity() {
     override val hitbox:        Hitbox = Hitbox(
         rect = Rect(
             0.0, 0.0,
-            initialAnimation.spriteSheet.spriteWidth,
-            initialAnimation.spriteSheet.spriteHeight
+            initialAnimation.spriteSheet.sprite.width,
+            initialAnimation.spriteSheet.sprite.height
         ),
         entity = this
     )

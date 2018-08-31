@@ -35,12 +35,12 @@ private val textBg2:    Paint = Color.web("#000000d0") // darker
 private val textBg3:    Paint = Color.web("#000000d8") // darkest
 
 // Sprites used in Debug UI. Loaded and initiailzed the first time debug is enabled
-private lateinit var stopIcon:      Sprite
-private lateinit var upIcon:        Sprite
-private lateinit var downIcon:      Sprite
-private lateinit var cameraIcon:    Sprite
-private lateinit var hitboxIcon:    Sprite
-private var spritesLoaded:          Boolean = false
+private var stopIcon:   Sprite = Sprite("FUTZ/debug_stop.png",          100.0, 100.0)
+private var upIcon:     Sprite = Sprite("FUTZ/debug_scrollup.png",      100.0, 100.0)
+private var downIcon:   Sprite = Sprite("FUTZ/debug_scrolldown.png",    100.0, 100.0)
+private var cameraIcon: Sprite = Sprite("FUTZ/debug_camera.png",        100.0, 100.0)
+private var hitboxIcon: Sprite = Sprite("FUTZ/debug_hitbox.png",        100.0, 100.0)
+private var spritesLoaded: Boolean = false
 
 /**
  * Manages the Debugging interface and console.
@@ -88,11 +88,6 @@ public object Debug {
         // Load necessary assets if they haven't been loaded already
         if (!spritesLoaded)
             loadSprites()
-        if (!Assets.liberationFontsLoaded) {
-            Assets.loadLiberationFonts()
-            bigText     = Font("Liberation Mono", BIG_TEXT_SIZE)
-            smallText   = Font("Liberation Mono", SMALL_TEXT_SIZE)
-        }
 
         // Draw UI
         if (showHitboxes) {
@@ -367,11 +362,11 @@ public object Debug {
 
     /** Load all of the sprites needed for the debug UI */
     private fun loadSprites() {
-        stopIcon    = Assets.loadSprite("FUTZ/debug_stop.png")
-        upIcon      = Assets.loadSprite("FUTZ/debug_scrollup.png")
-        downIcon    = Assets.loadSprite("FUTZ/debug_scrolldown.png")
-        cameraIcon  = Assets.loadSprite("FUTZ/debug_camera.png")
-        hitboxIcon  = Assets.loadSprite("FUTZ/debug_hitbox.png")
+        stopIcon.load()
+        upIcon.load()
+        downIcon.load()
+        cameraIcon.load()
+        hitboxIcon.load()
         spritesLoaded = true
     }
 
