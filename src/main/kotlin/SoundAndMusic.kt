@@ -63,10 +63,9 @@ public class Music (
         if (loadFromExternalFile)   path
         else                        FUTZ::class.java.classLoader.getResource(MUSIC_RESOURCE_PATH+path)?.toExternalForm()
 
-    public var media: Media? = null
-        private set
-    public var player: MediaPlayer? = null
-        private set
+    private var media: Media? = null
+    private var player: MediaPlayer? = null
+    
     public var loaded: Boolean = false
         private set
     public var isPlaying: Boolean = false
@@ -84,18 +83,17 @@ public class Music (
                 player = MediaPlayer(media)
                 player?.let {
                     it.volume = defaultVolume
-                    /*it.onEndOfMedia = object : Runnable {
+                    it.onEndOfMedia = object : Runnable {
                         override fun run() {
                             if (looping) it.seek(Duration.ZERO)
                         }
-                    }*/
+                    }
                     it.onError = object : Runnable {
                         override fun run() {
                             Debug.error("Error occured with music '$path'")
                             Debug.error(it.error.toString())
                         }
                     }
-                    it.cycleCount = MediaPlayer.INDEFINITE
                     loaded = true
                 } // end player?.let
             } catch (e: Exception) {
