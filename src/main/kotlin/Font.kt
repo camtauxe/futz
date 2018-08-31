@@ -22,8 +22,8 @@ public object Fonts {
     * once a font is loaded it's family is added to the list of installed font families
     * and new fonts of that family can be created using JavaFX's own Font constructor(s)
     *
-    * @param [path] The path to the file to load. If [fromExternalFile] is 'false' this will be
-    * a path relative to the "assets/font" directory within the JAR file. If [fromExternalFile]
+    * @param [path] The path to the file to load. If [loadFromExternalFile] is 'false' this will be
+    * a path relative to the "assets/font" directory within the JAR file. If [loadFromExternalFile]
     * is 'true' then this will be a path relative to the Application's working directory.
     * @param [size] The size of the Font. The best value for this depends on the context
     * in which you intend to draw the font as it will be relative to the scale of the
@@ -34,11 +34,11 @@ public object Fonts {
     public fun loadFont(
         path: String,
         size: Double = 0.35,
-        fromExternalFile: Boolean = false
+        loadFromExternalFile: Boolean = false
     ): Font {
         var url: String? =
-            if (fromExternalFile)   path
-            else                    FUTZ::class.java.classLoader.getResource(FONT_RESOURCE_PATH+path)?.toExternalForm()
+            if (loadFromExternalFile)   path
+            else                        FUTZ::class.java.classLoader.getResource(FONT_RESOURCE_PATH+path)?.toExternalForm()
 
         // There is a chance that the URL returned by the getResource() method will be null
         url?.let{
