@@ -1,6 +1,7 @@
 package com.camerontauxe.futz
 
 import javafx.scene.text.Font
+import javafx.scene.canvas.GraphicsContext
 
 // The directory (within the JAR file) where fonts are located
 private const val FONT_RESOURCE_PATH    = "assets/font/"
@@ -80,4 +81,8 @@ public object Fonts {
         liberationFontsLoaded = true
         Debug.log("Liberation Fonts loaded")
     }
+}
+
+fun GraphicsContext.fillText(text: String, position: Vector2) {
+    this.fillText(text, position.x, position.y)
 }

@@ -25,8 +25,10 @@ private const val CAMERA_SPEED:         Double = 2.5
 private const val CAMERA_ZOOM_SPEED:    Double = 2.5
 
 // Fonts used in debug UI. (These may get reloaded if Liberation fonts haven't been loaded yet)
-private var bigText:    Font = Font("Liberation Mono", BIG_TEXT_SIZE)
-private var smallText:  Font = Font("Liberation Mono", SMALL_TEXT_SIZE)
+//private var bigText:    Font = Font("Liberation Mono", BIG_TEXT_SIZE)
+//private var smallText:  Font = Font("Liberation Mono", SMALL_TEXT_SIZE)
+private var bigText:    Font = Fonts.loadFont("FUTZ/LiberationMono-Regular.ttf", BIG_TEXT_SIZE)
+private var smallText:  Font = Fonts.loadFont("FUTZ/LiberationMono-Regular.ttf", SMALL_TEXT_SIZE)
 
 // Colors in Debug UI
 private val textColor:  Paint = Color.WHITE;
