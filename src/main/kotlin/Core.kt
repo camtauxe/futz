@@ -46,7 +46,8 @@ public object FUTZ {
 
     // Scene management
     /** The currently active Scene */
-    private var currentScene:       Scene   = SplashScreen  // The first scene will
+    public var currentScene:       Scene   = SplashScreen  // The first scene will
+        private set
                                                             // always be the splash screen
     /** The scene to switch to at the end of this frame if [shouldChangeScene] is true */
     private var nextScene:          Scene   = EmptyScene
