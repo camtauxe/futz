@@ -45,8 +45,13 @@ public object FUTZ {
     // private and internal properties
 
     // Scene management
-    /** The currently active Scene */
-    private var currentScene:       Scene   = SplashScreen  // The first scene will
+    /** 
+     * The currently active Scene. Note that this is read-only.
+     * To change FUTZ to a different scene, please use [FUTZ.setScene]
+     * @see FUTZ.setScene
+     */
+    public var currentScene:       Scene   = SplashScreen  // The first scene will
+        private set
                                                             // always be the splash screen
     /** The scene to switch to at the end of this frame if [shouldChangeScene] is true */
     private var nextScene:          Scene   = EmptyScene
@@ -169,6 +174,9 @@ public object FUTZ {
         // These values are used to calculate [Viewport.aspectRatio] which
         // is constant from this point on
         Viewport.initInWindow(windowWidth = width, windowHeight = height)
+
+        // Load liberation fonts
+        Fonts.loadLiberationFonts()
 
         // Start a JavaFX application
         Application.launch(FutzApp::class.java)
