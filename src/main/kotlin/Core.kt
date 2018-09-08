@@ -45,7 +45,11 @@ public object FUTZ {
     // private and internal properties
 
     // Scene management
-    /** The currently active Scene */
+    /** 
+     * The currently active Scene. Note that this is read-only.
+     * To change FUTZ to a different scene, please use [FUTZ.setScene]
+     * @see FUTZ.setScene
+     */
     public var currentScene:       Scene   = SplashScreen  // The first scene will
         private set
                                                             // always be the splash screen

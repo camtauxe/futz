@@ -6,8 +6,17 @@ import javafx.scene.canvas.GraphicsContext
 // The directory (within the JAR file) where fonts are located
 private const val FONT_RESOURCE_PATH    = "assets/font/"
 
+/**
+ * An object for managing the loading of Font assets.
+ * Note that this is different than the JavaFX Font class
+ */
 public object Fonts {
 
+    /**
+     * Whether or not the liberation family of fonts has already been
+     * loaded. The fonts are loaded automatically during [FUTZ.init], so
+     * once "in-game," this can be relied on to be true.
+     */
     public var liberationFontsLoaded: Boolean = false
         private set
 
@@ -25,12 +34,11 @@ public object Fonts {
     *
     * @param [path] The path to the file to load. If [loadFromExternalFile] is 'false' this will be
     * a path relative to the "assets/font" directory within the JAR file. If [loadFromExternalFile]
-    * is 'true' then this will be a path relative to the Application's working directory.
+    * is 'true' then this will be a any acceptable java URI.
     * @param [size] The size of the Font. The best value for this depends on the context
     * in which you intend to draw the font as it will be relative to the scale of the
     * graphics context when it is drawn. If being drawn as an entity, this should be a relatively
     * small value since it will be interpreted as in-game units.
-    * @receiver Assets
     */
     public fun loadFont(
         path: String,
@@ -60,8 +68,9 @@ public object Fonts {
 
     /**
     * Load the family of Liberation fonts. These font files come with FUTZ
-    * so they can be guaranteed to be available on any system.
-    * @receiver Assets
+    * so they can be guaranteed to be available on any system. This is called
+    * automatically during [FUTZ.init], but if you wish to load some fonts
+    * before [FUTZ.init] is called, you can call this yourself.
     */
     public fun loadLiberationFonts() {
         //If we've already done this, don't do it again.
@@ -83,6 +92,10 @@ public object Fonts {
     }
 }
 
+/**
+ * Draw a string of text at the given position (note that the position
+ * refers to the lower-left-hand corner of where the text will appear)
+ */
 fun GraphicsContext.fillText(text: String, position: Vector2) {
     this.fillText(text, position.x, position.y)
 }
