@@ -208,12 +208,12 @@ public fun GraphicsContext.transformViewportToWorldSpace() {
  * @receiver GraphicsContext
  */
 public fun GraphicsContext.transformWorldSpaceToViewport() {
+    this.translate(
+        Camera.position.x - (Viewport.widthUnits  / 2.0),
+        Camera.position.y - (Viewport.heightUnits / 2.0)
+    )
     val scaleFactor = UNITS_PER_SCREEN / Viewport.width / Camera.zoom
     this.scale(scaleFactor, scaleFactor)
-    this.translate(
-        (Viewport.width / 2.0) + Camera.position.x,
-        (Viewport.height / 2.0) + Camera.position.y
-    )
 }
 
 // Transform Vector2's between world-space and viewport
