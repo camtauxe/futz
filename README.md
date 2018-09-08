@@ -18,13 +18,15 @@ Right now, Futz is extremely un-finished. It's rough around the edges in many pl
 * Input Management
 * Box collision detection
 * Built-in basic entities for drawing sprites, rectangles, or text
+* Sprite sheet animation
+* Sound effect and music playback
 * Lots of small, helpful abstractions (nothing ground-breaking, but it'll save you some time in a game jam)
 
 ### Planned features
 
 I plan to keep adding functionality to Futz as I encounter the need for features. Though it is important to me to maintain the bottom-line that Futz be easy for beginners to work with, so any features I add should be very simple to use, or possible to completely ignore in the case of more advanced functionality. That said, there are a number of features that are immediately on the drawing board:
 
-* Sound
+* Rework of text drawing
 * Scaling and rotating of entities
 * Entity heirarchies (i.e. entities can be the child or parent of another entity)
 
