@@ -21,6 +21,8 @@ Quality of Life:
     - center() function for rects
     - Additional constructor for rects which only
         takes a width and height. Assumes x and y are 0
+    - Functions to add, subtract, multiply and divide
+        Vectors by scalar values
 
 Examine more closely:
     - Is it necessary to pass the graphics context into
