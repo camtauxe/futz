@@ -1,0 +1,33 @@
+This is just me jotting down my notes for things
+I would like to change for v0.3.
+
+Features:
+    - Entity scaling
+    - Adjust logic so that an entity's position
+        typically refers to its center rather than
+        upper-right corner.
+    - Make text-drawing less hacky (by which I mean,
+        move the hackiness into engine code so the 
+        user doesn't have to think about it)
+    - Fix music being broken on Linux (maybe)
+
+Bugs:
+    - The framerate seems to be unlimited on my laptop
+        but not on my desktop. Why? Both should have
+        nearly identical environments.
+
+Quality of Life:
+    - Constant static Vector2 for (0, 0)
+    - center() function for rects
+    - Additional constructor for rects which only
+        takes a width and height. Assumes x and y are 0
+
+Examine more closely:
+    - Is it necessary to pass the graphics context into
+        each call to Entity.draw()? If we want the graphics
+        context, can we just use FUTZ.graphicsContext?
+    - I want to prevent passing-by-reference with
+        geometry classes (Vector2 and Rect) whereever
+        possible. If I pass a rect into the constructor
+        for a RectEntity, does this copy the rect like
+        it should or no?
